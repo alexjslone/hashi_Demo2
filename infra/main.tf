@@ -30,6 +30,18 @@ resource "aws_instance" "web" {
 # separates the application from other AWS customer applications
 #the cidr_block describes the range of IP addresses that can be used in the VPC 
 #These will be private but that is okay as you still can access it publicly from internet
+
+#creating a bucket on the new branch
+resource "aws_s3_bucket" "example" {
+  bucket = "my-tf-test-bucket"
+
+  tags = {
+    Name        = "My bucket"
+    Environment = "Dev"
+  }
+}
+
+
 resource "aws_vpc" "hashi_vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
